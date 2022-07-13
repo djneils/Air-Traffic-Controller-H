@@ -238,7 +238,7 @@ function draw() {
     noFill()
     //rect(width/2,height/2,400,300)
     fill(0)
-    text('AIR TRAFFIC CONTROL', width * 0.32, height * 0.07)
+    text('FLIGHT CONTROL', width * 0.32, height * 0.07)
     textSize(50)
     text('HIGH SCORES', width * 0.15, height * 0.5)
     text('PRESS SPACE TO START', width * 0.5, height * 0.87)
