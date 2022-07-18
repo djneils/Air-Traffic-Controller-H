@@ -29,8 +29,10 @@ let landedPlanes = []
 let gameStart = false
 let bestScores = []
 let scoreSent = false
+let backCol = 'blue'
 let name = prompt('enter your name')
 let body = document.getElementById('pageBody')
+body.classList.add("backcolb")
 function preload() {
   socket.on("top10", function(data) {
     bestScores = data
@@ -108,6 +110,11 @@ function addTime() {
 }
 function draw() {
   if (gameStart == true) {
+    if (backCol == 'blue') {
+      body.classList.add("backcolg")
+      body.classList.remove("backcolb")
+      backCol = 'green'
+    }
     if (planesReleased < maxPlanes && frameCount % 400 == 0) {
       planes.push(new Plane())
       planesReleased++
@@ -137,9 +144,9 @@ function draw() {
     let mins = floor(gameTime / 60)
     let secs = gameTime % 60
     if (secs < 10) {
-      text(mins + ':0' + secs, width * 0.06, height * 0.9)
+      text(mins + ':0' + secs, width * 0.06, height * 0.95)
     } else {
-      text(mins + ':' + secs, width * 0.06, height * 0.9)
+      text(mins + ':' + secs, width * 0.06, height * 0.95)
     }
 
     radar()
@@ -175,12 +182,7 @@ function draw() {
       }
     }
 
-    for (let p of planes) {
-      p.update()
-    }
-    for (let e of effects) {
-      e.update()
-    }
+
     fill(0)
     let lx = width * 0.3
     let ly = height * 0.84
@@ -206,6 +208,12 @@ function draw() {
       lx += space
 
     }
+    for (let p of planes) {
+      p.update()
+    }
+    for (let e of effects) {
+      e.update()
+    }
     if (gameOver) {
 
       push()
@@ -230,6 +238,11 @@ function draw() {
     }
 
   } else {
+    if (backCol == 'green') {
+      body.classList.add("backcolb")
+      body.classList.remove("backcolg")
+      backCol = 'blue'
+    }
     imageMode(CORNER)
     background(coverScreen)
     push()
