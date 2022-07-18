@@ -30,7 +30,7 @@ let gameStart = false
 let bestScores = []
 let scoreSent = false
 let name = prompt('enter your name')
-
+let body = document.getElementById('pageBody')
 function preload() {
   socket.on("top10", function(data) {
     bestScores = data
@@ -53,6 +53,7 @@ function preload() {
 function setup() {
 
   createCanvas(windowHeight * (runway.width / runway.height), windowHeight)
+  body.classList.add("backcol")
   init()
 }
 function init() {
